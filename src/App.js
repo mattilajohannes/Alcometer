@@ -5,8 +5,8 @@ function App() {
 
 
   const [weight, setWeight] = useState(80);
-  const [bottles, setBottles] = useState(1.3);
-  const [time, setTime] = useState(1.3);
+  const [bottles, setBottles] = useState(1);
+  const [time, setTime] = useState(1);
   const [gender, setGender] = useState('male');
   const [result, setResult] = useState(0);
 
@@ -17,15 +17,19 @@ function App() {
   let gramsleft = grams - (burning * time);
 
 
+
   
   function handleSubmit(e){
     e.preventDefault();
     let alcohollevel = 0;
     if (gender === 'male') {
-      alcohollevel = grams / (weight * 0.7);
+      alcohollevel = gramsleft / (weight * 0.7);
     }
     else {
-      alcohollevel = grams / (weight * 0.6);
+      alcohollevel = gramsleft / (weight * 0.6);
+    }
+    if (alcohollevel < 0) {
+      alcohollevel = 0;
     }
     setResult(alcohollevel);
   }
@@ -43,21 +47,21 @@ function App() {
       <div>
         <label>Bottles</label>
         <select name="bottles" value={bottles} onChange={e => setBottles(e.target.value)}>
-          <option value="1.3">1</option>
-          <option value="1.5">2</option>
-          <option value="1.7">3</option>
-          <option value="2">4</option>
-          <option value="2.2">5</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
       </div>
       <div>
       <label>Time</label>
         <select name="time" value={time} onChange={e => setTime(e.target.value)}>
-          <option value="1.3">1</option>
-          <option value="1.5">2</option>
-          <option value="1.7">3</option>
-          <option value="2">4</option>
-          <option value="2.2">5</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
       </div>
       <div>
